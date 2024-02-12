@@ -1,0 +1,30 @@
+.Open {
+    --slds-c-badge-color-background: grey;
+    --slds-c-badge-text-color: white;
+}
+.Approved {
+    --slds-c-badge-color-background: green;
+    --slds-c-badge-text-color: white;
+    
+}
+.Exception {
+    --slds-c-badge-color-background: red;
+    --slds-c-badge-text-color: white;
+}
+
+.Reviewed {
+--slds-c-badge-color-background: yellow;
+--slds-c-badge-text-color: black;
+}
+
+.In-File {
+    --slds-c-badge-color-background: orange;
+    --slds-c-badge-text-color: black;
+   
+}
+
+.Waived {
+    --slds-c-badge-color-background: white ;
+    --slds-c-badge-text-color: black;
+    
+}

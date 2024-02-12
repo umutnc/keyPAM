@@ -1,0 +1,41 @@
+<template>
+    <div class="slds-text-body_regular slds-var-m-around_small"> {headingText} </div>
+    <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+        <thead>
+            <tr>
+                <th>LOAN</th>
+                <th>BORROWER TYPE</th>
+                <th>STAGE</th>
+                <th>STATUS</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={sortedLoans} for:item="loan">
+                <tr key={loan.loanId}>
+                    <td>
+                        <div>
+                            <lightning-icon class="slds-m-right_large" icon-name="custom:custom17" alternative-text="Loan" title="Loan"> </lightning-icon>
+                            <a data-link={loan.loanId} onclick={loanLink}>{loan.name}</a>  
+                        </div>
+                    </td>
+                    <td>
+                        {loan.borrowerType}
+                    </td>
+                    <td>
+                        {loan.stage}
+                    </td>
+                    <td>
+                        {loan.status}
+                    </td>
+                    <td >
+                        <div class="slds-align_absolute-center">
+                            <lightning-input data-id={loan.loanId} type="toggle" onchange={handleFlip} checked={loan.isEnabled} message-toggle-active="Enabled" message-toggle-inactive="Disabled" ></lightning-input>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+    <lightning-spinner variant="brand" size="large" if:true={isLoading}> </lightning-spinner>
+</template>

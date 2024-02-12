@@ -1,0 +1,70 @@
+<template>
+    <div class="slds-tabs_card">
+        <template if:true={contact}>
+            <lightning-layout multiple-rows="true" horizontal-align="spread">
+                <lightning-layout-item padding="around-small" size="3">
+                    <lightning-card>
+                        <h3 slot="title" class="slds-truncate">
+                            <lightning-icon class="slds-m-right_small" icon-name="standard:people" size="small"></lightning-icon>
+                            <a data-link={contact.contactId}  onclick={conLink}>{contact.name}</a>
+                        </h3>
+                    </lightning-card>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="3" >
+                    <div class="header-column">
+                        <p style="color:gray" title="Email">EMAIL</p>
+                        <p class ="slds-truncate slds-var-m-top_xx-small">{contact.email}</p>
+                    </div> 
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="2">
+                    <div class="header-column">
+                        <p style="color:gray" title="Username">Username:</p>
+                        <p class ="slds-truncate slds-var-m-top_xx-small">{contact.userName}</p>
+                    </div> 
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="2">
+                    <div class="header-column">
+                        <p style="color:gray" title="Role">ROLE</p>
+                        <p class ="slds-var-m-top_xx-small">{contact.role}</p>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small" size="1">
+                    <div class="header-column">
+                        <p style="color:gray" title="Last Login">LAST LOGIN</p>
+                        <p class ="slds-var-m-top_xx-small">{contact.lastLoginDate}</p>
+                    </div>
+                    <p hidden>Id: {contact.contactId}</p>
+                </lightning-layout-item>
+                <!--
+                <lightning-layout-item padding="around-small">
+                     <div class="header-column">
+                        <p class="field-title" title="Enabled"></p>
+                            <p>
+                                <lightning-input data-id="toggle" type="toggle" label="nCino Portal" onchange={handleFlip} checked={contact.isEnabled} message-toggle-active="Enabled" message-toggle-inactive="Disabled" ></lightning-input>
+                            </p>
+                    </div>
+                </lightning-layout-item>
+                This toggle button removed as per Key's requests--> 
+                <lightning-layout-item padding="around-medium" size="1">
+                    <lightning-icon class="slds-float_right" icon-name={chevronIconName} size="small" onclick={toggleChildVisibility} alternative-text="Chevron"></lightning-icon>
+                </lightning-layout-item>
+                </lightning-layout>
+                <template if:true={childVisible}>
+                    <lightning-tabset>
+                    <lightning-tab label="RELATIONSHIPS">
+                        <c-pam-relationship-list contact-id={contact.contactId} contact-name={contact.name} account-id={accountId}></c-pam-relationship-list>
+                    </lightning-tab>
+                    <lightning-tab label="LOANS">
+                        <c-pam-loan-list contact-id={contact.contactId} account-id={accountId}></c-pam-loan-list>
+                    </lightning-tab>
+                    <lightning-tab label="DEPOSITS">
+                        <c-pam-deposit-list contact-id={contact.contactId} account-id=:accountId></c-pam-deposit-list>
+                    </lightning-tab>
+                    <lightning-tab label="TO-DO-LIST">
+                        <c-pam-to-do-list account-id={accountId}></c-pam-to-do-list>
+                    </lightning-tab>
+                </lightning-tabset>
+                </template>
+        </template>
+    </div>
+</template>

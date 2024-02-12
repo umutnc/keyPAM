@@ -1,0 +1,37 @@
+<template>
+    <div class="slds-text-body_regular slds-var-m-around_small"> {headingText} </div>
+    <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+        <thead>
+            <tr>
+                <th>DEPOSIT</th>
+                <th>RELATIONSHIP TYPE</th>
+                <th>STAGE</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={sortedDeposits} for:item="deposit">
+                <tr key={deposit.depositId}>
+                    <td>
+                        <div>
+                        <lightning-icon class="slds-m-right_large" icon-name="custom:custom41" alternative-text="Deposit" title="Deposit"> </lightning-icon>
+                        <a data-link={deposit.depositId} onclick={depoLink}>{deposit.name}</a>  
+                    </div>
+                    </td>
+                    <td>
+                        {deposit.relationshipType}
+                    </td>
+                    <td>
+                        {deposit.stage}
+                    </td>
+                    <td >
+                        <div class="slds-align_absolute-center">
+                            <lightning-input data-id={deposit.depositId} type="toggle" onchange={handleFlip} checked={deposit.isEnabled} message-toggle-active="Enabled" message-toggle-inactive="Disabled" ></lightning-input>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+    <lightning-spinner variant="brand" size="large" if:true={isLoading}> </lightning-spinner>
+</template>

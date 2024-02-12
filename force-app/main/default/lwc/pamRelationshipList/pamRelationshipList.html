@@ -1,0 +1,33 @@
+<template>
+    <div class="slds-text-body_regular slds-var-m-around_x-small"> {headingText} </div>
+    <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+        <thead>
+            <tr>
+                <th>RELATIONSHIP</th>
+                <th>ROLE</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={sortedAccounts} for:item="account">
+                <tr key={account.accountId}>
+                    <td>
+                        <div class="slds-float_left">
+                        <lightning-icon class="slds-m-right_medium" icon-name="standard:account" alternative-text="Account" title="Account"> </lightning-icon>
+                            <a data-link={account.accountId}  onclick={accLink}>{account.name}</a>
+                        </div>
+                    </td>
+                    <td>
+                        {account.role}
+                    </td>
+                    <td >
+                        <div class="slds-align_absolute-center">
+                            <lightning-input data-id={account.accountId} type="toggle" label="nCino Portal" onchange={handleFlip} checked={account.isEnabled} message-toggle-active="Enabled" message-toggle-inactive="Disabled" ></lightning-input>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+    <lightning-spinner variant="brand" size="large" if:true={isLoading}> </lightning-spinner>
+</template>

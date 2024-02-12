@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-text-body_regular slds-var-m-around_small"> {headingText} </div>
+    <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+        <thead>
+            <tr>
+                <th>STATUS</th>
+                <th>PLACEHOLDER</th>
+                <th>DOCUMENT MANAGER</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={docs} for:item="doc">
+                <tr key={doc.id}>
+                    <td>
+                        <div class={doc.style}>
+                            {doc.status}   
+                        </div>  
+                    </td>
+                    <td>
+                        {doc.placeholder}
+                    </td>
+                    <td>{doc.documentManager}</td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

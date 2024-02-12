@@ -1,0 +1,23 @@
+<template>
+    <lightning-card variant="narrow" title="Portal Access Management" icon-name="standard:portal">
+        <lightning-button-group slot="actions">
+            <lightning-button label="All" onclick={filterContacts}></lightning-button>
+            <lightning-button label="Enabled" onclick={filterContacts}></lightning-button>
+            <lightning-button label="Disabled" onclick={filterContacts}></lightning-button>
+        </lightning-button-group>           
+        <template if:true={hasContacts}>
+            <div class="slds-text-body_regular slds-m-left_medium">Individuals related to this relationship.</div>               
+            <div class="c-container">
+                <template for:each={selectedContacts} for:item="contact">
+                    <lightning-layout-item size="12" padding="around-small" key={contact.contactId}>
+                        <c-pam-contact-tile  contact={contact} account-id={recordId} onflip={handleToggle}></c-pam-contact-tile>
+                    </lightning-layout-item>
+                </template>
+            </div>       
+        </template>
+        <template if:false={hasContacts}>
+            <div class="slds-text-heading_small">No contacs found.</div>
+        </template>
+    </lightning-card>
+        <lightning-spinner variant="brand" size="large" if:true={isLoading}> </lightning-spinner>
+</template>
